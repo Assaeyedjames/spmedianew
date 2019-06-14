@@ -1,0 +1,377 @@
+/*
+ Theme Name:   SP-Media
+ Description:  Szablon WordPress dla strony spmedia.pl
+ Author:       Sławomir Stopa SP-Media
+ Author URI:   slawomirstopa.pl
+ Template:     twentynineteen
+ Version:      1.0.0
+ License:      GNU General Public License v2 or later
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+ Text Domain:  twenty-nineteen-child
+*/
+@import "var";
+
+body {
+  line-height: 1.5;
+  font-family: $font-primary;
+  color: $primary;
+  h1,h2,h3,h4,h5,h6 {
+    font-family: $font-secondary;
+  }
+  h1,h2 {
+    font-size: 48px;
+  }
+  a {
+    color: $primary;
+    &:visited {
+      color: $primary2;
+    }
+    &:hover {
+      color: $color1;
+    }
+    &:active {
+      color: $color1-2;
+    }
+  }
+}
+h1:not(.site-title):before, h2:before {
+  content: none;
+  display: none;
+}
+
+.author-description .author-link, .comment-metadata, .comment-reply-link, .comments-title, .comment-author .fn, .discussion-meta-info, .entry-meta, .entry-footer, .main-navigation, .no-comments, .not-found .page-title, .error-404 .page-title, .post-navigation .post-title, .page-links, .page-description, .pagination .nav-links, .sticky-post, .site-title, .site-info, #cancel-comment-reply-link, h1, h2, h3, h4, h5, h6 {
+  font-family: $font-primary;
+}
+.hidden {
+  display: none;
+}
+.site-header {
+  position: relative;
+  z-index: 99;
+  padding: 5px;
+  background-color: $primary;
+  color: $secondary;
+  ul {
+    list-style: none;
+    padding-left: 0;
+    a {
+      color: $secondary;
+      &:visited {
+        color: $secondary2;
+      }
+      &:hover {
+        color: $color1;
+      }
+      &:active {
+        color: $color1-2;
+      }
+    }
+    &.menu {
+      margin: 0;
+    }
+  }
+  .site-branding {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $secondary;
+    .site-logo {
+      margin-bottom: 0;
+      position: relative;
+      right: 0;
+      top: 0;
+      display: flex;
+      a {
+        display: flex;
+      }
+      &.logo-mobile {
+        @include breakpoint(t) {
+          display: none;
+        }
+      }
+      &.logo-desktop {
+        display: none;
+        @include breakpoint(t) {
+          display: flex;
+        }
+      }
+      img {
+        width: 100%;
+        max-height: 50px;
+        display: block;
+      }
+    }
+    .modalSearch {
+      width: 40px;
+      height: 40px;
+      position: relative;
+      z-index: 1;
+      &.active {
+        z-index: 0;
+        .search-icon {
+          .search-toggle {
+            padding: 450px;
+            cursor: auto;
+            pointer-events: none;
+            svg {
+              cursor: pointer;
+              pointer-events: all;
+              transform: rotate(180deg);
+            }
+          }
+        }
+        .widget_search {
+          opacity: 1;
+          pointer-events: auto;
+          transition: all 0.3s ease-in-out;
+          transition-delay: 0.2s;
+        }
+      }
+      .search-icon {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        transform: translate(-50%,-50%);
+        .search-toggle {
+          border-radius: 50%;
+          transition: all 0.3s ease-in-out;
+          padding: 0;
+          line-height: 1;
+          background: $primary;
+          width: 40px;
+          height: 40px;
+          box-sizing: content-box;
+          svg {
+            transition: all 0.3s ease-in-out;
+            transform-origin: 41% 42%;
+          }
+        }
+      }
+      .widget_search {
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        top: 50px;
+        transition-delay: 0;
+        transition: all 0.2s ease-in-out;
+      }
+    }
+    .modalMenu {
+      width: 40px;
+      height: 40px;
+      position: relative;
+      z-index: 1;
+      .main-navigation-menu {
+        pointer-events: none;
+        position: absolute;
+        opacity: 0;
+        top: 50px;
+        right: 0;
+        text-align: right;
+      }
+      .menu-icon {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        transform: translate(50%,-50%);
+      }
+      &:not(.active) {
+        .menu-toggle {
+          .row {
+            @for $i from 1 through 5 {
+              &:nth-child(2) {
+                .col-2 {
+                  &:nth-child(1) {
+                  animation: loop 5s #{$i * 0.05 + 0.3}s infinite;
+                  }
+                }
+              }
+              &:nth-child(4) {
+                .col-2 {
+                  &:nth-child(5) {
+                  animation: loop 5s #{$i * 0.05 + 0.3}s infinite;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .menu-toggle {
+        display: block;
+        border: none;
+        border-radius: 50%;
+        transition: all 0.3s ease-in-out;
+        padding: 10px;
+        line-height: 1;
+        background: $primary;
+      }
+      .row {
+        display: flex;
+        &:after {
+          display: table;
+          clear: both;
+          content: '';
+        }
+        .col-2 {
+          width: 4px;
+          height: 4px;
+          border-radius: 50%;
+          margin: 1px;
+          float: left;
+          background: rgba($color1,0.15);
+        }
+        @for $i from 1 through 5 {
+          &:nth-child(1) {
+            .col-2 {
+              &:nth-child(#{$i}) {
+              animation: menu 0.33s #{$i * 0.05 + 0.1}s forwards;
+              }
+            }
+          }
+          &:nth-child(3) {
+            .col-2 {
+              &:nth-child(#{$i}) {
+              animation: menu 0.33s #{$i * 0.05 + 0.3}s forwards;
+              }
+            }
+          }
+          &:nth-child(5) {
+            .col-2 {
+              &:nth-child(#{$i}) {
+              animation: menu 0.33s #{$i * 0.05 + 0.5}s forwards;
+              }
+            }
+          }
+        }
+      }
+      @keyframes loop {
+        0% {background: rgba($color1,0.15);}
+        55% {background: rgba($color1,0.15);}
+        60% {background: rgba($color1,1);}
+        95% {background: rgba($color1,1);}
+        100% {background: rgba($color1,0.15);}
+      }
+      @keyframes menu {
+        0% {background: rgba($color1,0.15);}
+        100% {background: rgba($color1,1);}
+      }
+      @keyframes menuRev {
+        0% {background: rgba($color1,1);}
+        100% {background: rgba($color1,0.15);}
+      }
+      &.active {
+        z-index: 0;
+        .main-navigation-menu {
+          opacity: 1;
+          pointer-events: auto;
+          transition: all 0.3s ease-in-out;
+          transition-delay: 0.2s;
+        }
+        .menu-toggle {
+          padding: 450px;
+          .row {
+            @for $i from 1 through 5 {
+              &:nth-child(1) {
+                .col-2 {
+                background: rgba($color1,1);
+                  &:nth-child(#{$i}) {
+                  animation: menuRev 0.33s #{$i * 0.05 + 0.5}s forwards;
+                  }
+                }
+              }
+              &:nth-child(3) {
+                .col-2 {
+                background: rgba($color1,1);
+                  &:nth-child(#{$i}) {
+                  animation: menuRev 0.33s #{$i * 0.05 + 0.3}s forwards;
+                  }
+                }
+              }
+              &:nth-child(5) {
+                .col-2 {
+                background: rgba($color1,1);
+                  &:nth-child(#{$i}) {
+                  animation: menuRev 0.33s #{$i * 0.05 + 0.1}s forwards;
+                  }
+                }
+              }
+              &:nth-child(1) {
+                .col-2 {
+                  &:nth-child(1) {
+                  animation: menu 0.33s 0.15s forwards;
+                  }
+                  &:nth-child(5) {
+                    animation: menu 0.33s 0.75s forwards;
+                  }
+                }
+              }
+              &:nth-child(2) {
+                .col-2 {
+                  &:nth-child(2) {
+                  animation: menu 0.33s 0.4s forwards;
+                  }
+                  &:nth-child(4) {
+                    animation: menu 0.33s 0.75s forwards;
+                  }
+                }
+              }
+              &:nth-child(3) {
+                .col-2 {
+                  &:nth-child(3) {
+                  animation: menu 0.33s 0.75s forwards;
+                  }
+                }
+              }
+              &:nth-child(4) {
+                .col-2 {
+                  &:nth-child(2) {
+                  animation: menu 0.33s 0.75s forwards;
+                  }
+                  &:nth-child(4) {
+                    animation: menu 0.33s 0.9s forwards;
+                  }
+                }
+              }
+              &:nth-child(5) {
+                .col-2 {
+                  &:nth-child(1) {
+                  animation: menu 0.33s 0.75s forwards;
+                  }
+                  &:nth-child(5) {
+                    animation: menu 0.33s 1.15s forwards;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+input[type="text"], input[type="email"], input[type="url"], input[type="password"], input[type="search"], input[type="number"], input[type="tel"], input[type="range"], input[type="date"], input[type="month"], input[type="week"], input[type="time"], input[type="datetime"], input[type="datetime-local"], input[type="color"], textarea {
+  font-family: $font-primary;
+  background: $primary2;
+  color: $secondary;
+  border: 0;
+  border-radius: 25px;
+  padding: 15px;
+  font-size: 16px;
+  line-height: normal;
+  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: rgba($secondary,0.5);
+  }
+  ::-moz-placeholder { /* Firefox 19+ */
+    color: rgba($secondary,0.5);
+  }
+  :-ms-input-placeholder { /* IE 10+ */
+    color: rgba($secondary,0.5);
+  }
+  :-moz-placeholder { /* Firefox 18- */
+    color: rgba($secondary,0.5);
+  }
+}
+input {
+  height: 50px;
+}

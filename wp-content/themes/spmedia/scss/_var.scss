@@ -1,0 +1,55 @@
+$primary: #011627;
+$primary2: #2f4054;
+$secondary: #fdfffc;
+$secondary2: #f4faff;
+$color1: #ff9f1c;
+$contrast: #fbbd08;
+$color1-2: #BA8406;
+$color2: #21b383;
+$color2-2: #10845d;
+$color3: #0099fa;
+$color3-1: #d8f3ff;
+$error: #db2828;
+$font-primary: "gilroy-light";
+$font-secondary: "gilroy-extrabold";
+
+@mixin breakpoint($point) {
+  @if $point == hD {
+    @media (min-width: 1920px) { @content ; }
+  }
+  @if $point == sN {
+    @media (min-width: 1368px) { @content ; }
+  }
+  @if $point == sD {
+    @media (min-width: 1280px) { @content ; }
+  }
+  @else if $point == d {
+    @media (min-width: 960px) { @content ;}
+  }
+  @else if $point == t {
+    @media (min-width: 768px) { @content ; }
+  }
+  @else if $point == ph {
+    @media (min-width: 640px) { @content ; }
+  }
+  @else if $point == m {
+    @media (min-width: 480px) { @content ; }
+  }
+  @else if $point == sM {
+    @media (min-width: 320px) { @content ; }
+  }
+}
+@font-face {
+    font-family: 'gilroy-extrabold';
+    src: url('/wp-content/themes/spmedia/fonts/gilroy-extrabold-webfont.woff2') format('woff2'),
+         url('/wp-content/themes/spmedia/fonts/gilroy-extrabold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'gilroy-light';
+    src: url('/wp-content/themes/spmedia/fonts/gilroy-light-webfont.woff2') format('woff2'),
+         url('/wp-content/themes/spmedia/fonts/gilroy-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
